@@ -18,6 +18,7 @@ void setup() {
   // Set the maximum speed and acceleration
   stepper.setMaxSpeed(1000); // steps per second
   stepper.setAcceleration(500); // steps per second^2
+
 }
 
 void loop() {
