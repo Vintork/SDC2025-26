@@ -20,12 +20,6 @@ void setup() {
   digitalWrite(in1, LOW);
   digitalWrite(in2, LOW);
 }
-
-void loop() {
-  directionControl();
-  speedControl();
-}
-
 void directionControl() {
   // Set motor direction
   digitalWrite(in1, HIGH);
@@ -46,3 +40,8 @@ void speedControl() {
    
   }
 }
+void loop() {
+  directionControl();
+  speedControl();
+}
+

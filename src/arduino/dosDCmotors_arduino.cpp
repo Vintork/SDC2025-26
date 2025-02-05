@@ -30,13 +30,6 @@ void setup() {
 	// digitalWrite(in4, LOW);
 }
 
-void loop() {
-	// directionControl();
-	// delay(1000);
-	speedControl();
-	delay(1000);
-}
-
 // This function lets you control spinning direction of motors
 void directionControl() {
 	// Set motors to maximum speed
@@ -93,3 +86,10 @@ void speedControl() {
 	// digitalWrite(in3, LOW);
 	// digitalWrite(in4, LOW);
 }
+void loop() {
+	// directionControl();
+	// delay(1000);
+	speedControl();
+	delay(1000);
+}
+
