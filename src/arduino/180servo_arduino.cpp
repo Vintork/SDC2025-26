@@ -15,9 +15,11 @@ void setup() {
 }
 
 void loop() {
-    if (Serial.available() > 0) {
+  if (Serial.available() > 0) {
       input = Serial.read();  // Read the incoming byte}
-    }
+  }
+
+  
   // Sweep from 0 to 180 degrees
   if ((input == 'L' || input == 'l')&&left==false) {
     left=true;
@@ -31,7 +33,7 @@ void loop() {
    
   }
  
-  else if ((input == 'R' || input == 'r')&& right==false) { 
+  else  { 
     right=true;
     left=false;
 

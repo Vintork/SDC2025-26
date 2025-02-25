@@ -25,6 +25,7 @@ void setup() {
 void loop() {
     if (Serial.available() > 0) {
       input = Serial.read();  // Read the incoming byte
+      String material = input;
     }
 
   //SERVO 1
@@ -38,18 +39,27 @@ void loop() {
       myservo1.write(pos1);       // tell servo to go to position in variable 'pos'
       delay(5);                // waits 15ms for the servo to reach the position
       Serial.println("Servo1: Left");    // Print "Left" when moving from 0 to 180
-    }
+
+        right1 = true;
+        left1 = false;
+        // Sweep from 180 to 0 degrees
+        for (pos1 = 180; pos1 >= 0; pos1 -= 1) {
+          myservo1.write(pos1);       // tell servo to go to position in variable 'pos'
+          delay(5);                // waits 15ms for the servo to reach the position
+          Serial.println("Servo1 = Right");   // Print "Rigth" when moving from 180 to 0
+        }
+      }
   }
-  else if ((input == 'W' || input == 'w')&& right1 == false) { 
-    right1 = true;
-    left1 = false;
-    // Sweep from 180 to 0 degrees
-    for (pos1 = 180; pos1 >= 0; pos1 -= 1) {
-      myservo1.write(pos1);       // tell servo to go to position in variable 'pos'
-      delay(5);                // waits 15ms for the servo to reach the position
-      Serial.println("Servo1 = Right");   // Print "Rigth" when moving from 180 to 0
-    }
- }
+//   else if ((input == 'W' || input == 'w')&& right1 == false) { 
+//     right1 = true;
+//     left1 = false;
+//     // Sweep from 180 to 0 degrees
+//     for (pos1 = 180; pos1 >= 0; pos1 -= 1) {
+//       myservo1.write(pos1);       // tell servo to go to position in variable 'pos'
+//       delay(5);                // waits 15ms for the servo to reach the position
+//       Serial.println("Servo1 = Right");   // Print "Rigth" when moving from 180 to 0
+//     }
+//  }
 
   //SERVO 2
 
