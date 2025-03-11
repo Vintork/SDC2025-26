@@ -239,7 +239,7 @@ void loop() {
   Serial.println(count);
 
     sensores();//find sensor input
-    String material_steel2 = get_material((count-3)%10),material_brass3 = get_material((count)%10);//identify materials
+    String material_steel2 = get_material((count-3)%10),material_brass3 = get_material((count-1)%10);//identify materials
 
   Serial.print("indexes: ");
   Serial.print((count-5)%10);
