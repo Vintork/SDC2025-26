@@ -2,6 +2,11 @@
 //empieza en 10 el voltaje 
 #include <AccelStepper.h>
 
+
+
+
+//STEPPER VARIABLES
+
 //spin more
 // Define pin connections & motor's steps per revolution
 const int dirPin = 2;
@@ -11,8 +16,12 @@ const int stepsFor40Degrees = 22; // Number of steps for 40 degrees
 const unsigned long timeFor40Degrees = 1000000; // 1 second in microseconds
 const unsigned long delayPerStep = timeFor40Degrees / stepsFor40Degrees; // Delay per step to achieve 40 degrees per second
 
+
+
 void setup()
 {
+//STEPPER SETUP:
+
 	// Declare pins as Outputs
 	pinMode(stepPin, OUTPUT);
 	pinMode(dirPin, OUTPUT);
@@ -20,6 +29,8 @@ void setup()
 
 void loop()
 {
+//STEPPER CODE:
+
 	// Set motor direction clockwise
 	digitalWrite(dirPin, HIGH);
 
