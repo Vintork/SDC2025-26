@@ -2,7 +2,7 @@
 
 //CRISTIAN
 
-
+//LEAN LA LIBRERIA PRIMERO
 //LIBRARY:
 //https://docs.arduino.cc/libraries/servo/
 
