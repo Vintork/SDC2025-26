@@ -48,8 +48,7 @@ int sensores(){
 }
 
 //servo functions
-
-//plastic
+//wheel
 void servo_1(){
     //move clockwise
     for (pos1 = 0; pos1 <= 180; pos1 += 5) { 
@@ -64,7 +63,7 @@ void servo_1(){
     }
 }
 
-//steel
+//gate 
 void servo_2(){
     //move clockwise
     for (pos2 = 0; pos2 <= 180; pos2 += 5) { 
@@ -79,7 +78,7 @@ void servo_2(){
     }
 }
 
-//brass
+//caminos
 void servo_3(String material){
     if (material == "brass"){
         // Move 30 degrees counterclockwise
@@ -87,8 +86,9 @@ void servo_3(String material){
             myservo3.write(pos3);
             delay(30);
         }
-        delay(200);
+        
         servo_2();
+        delay(200);
         // Return to original position
         for (pos3 = originalpos3 - 30; pos3 <= originalpos3; pos3 += 5) {
             myservo3.write(pos3);
@@ -101,8 +101,9 @@ void servo_3(String material){
             myservo3.write(pos3);
             delay(30);
         }
-        delay(200);
+        
         servo_2();
+        delay(200);
         // Return to original position
         for (pos3 = originalpos3 + 30; pos3 >= originalpos3; pos3 -= 5) {
             myservo3.write(pos3);
@@ -122,5 +123,7 @@ void loop() {
   else if(sensor1 && !sensor2){
       servo_3("brass");
   }
-  servo_2();
+  else{
+    servo_2();
+  }
 }
