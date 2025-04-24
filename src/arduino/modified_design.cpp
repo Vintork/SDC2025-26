@@ -19,6 +19,7 @@ const unsigned long delayPerStep = timeFor40Degrees / stepsFor40Degrees; // Dela
 int count = 10;
 
 //sensor
+//sensor
 int sensor = 13;
 int sensor2 = 7;
 
@@ -38,7 +39,10 @@ void setup() {
   //STEPPER 
   pinMode(stepPin, OUTPUT);
   pinMode(dirPin, OUTPUT);   
+  
 }
+int state1 = digitalRead(sensor);
+int state2 = digitalRead(sensor2);
 
 int sensores(){
     //read sensor input
@@ -77,53 +81,88 @@ void servo_2(){
         delay(30);
     }
 }
+void servo_3_try(){
+    //move clockwise
+    for (pos3 = 180; pos3 >= 0 ; pos3 -= 5) { // Moving down
+        myservo3.write(pos3);
+        delay(30);
+    }
 
+    delay(200);
+
+    // Return to original position
+    for (pos3 = 0 ; pos3 <= 180; pos3 += 5) { // Moving back up
+        myservo3.write(pos3);
+        delay(30);
+    }
+
+}
 //caminos
 void servo_3(String material){
-    if (material == "brass"){
-        // Move 30 degrees counterclockwise
-        for (pos3 = originalpos3; pos3 >= originalpos3 - 30; pos3 -= 5) {
+    if (material == "brass") {
+        Serial.print("in");
+        // Move clockwise (left side from middle)
+        for (pos3 = 60; pos3 >= 0; pos3 -= 5) { // Moving left
             myservo3.write(pos3);
             delay(30);
         }
-        
-        servo_2();
+
         delay(200);
-        // Return to original position
-        for (pos3 = originalpos3 - 30; pos3 <= originalpos3; pos3 += 5) {
+        servo_2(); // Call servo_2 function
+
+        // Return to original position (move back to center)
+        for (pos3 = 0; pos3 <= 60; pos3 += 5) { // Moving back to middle
+            myservo3.write(pos3);
+            delay(30);
+        }
+
+    }
+
+    if (material == "steel") {
+        // Move counter-clockwise (right side from middle)
+        for (pos3 = 60; pos3 <= 180; pos3 += 5) { // Moving right
+            myservo3.write(pos3);
+            delay(30);
+        }
+
+        servo_2(); // Call servo_2 function
+        delay(200);
+
+        // Return to original position (move back to center)
+        for (pos3 = 180; pos3 >= 60; pos3 -= 5) { // Moving back to middle
             myservo3.write(pos3);
             delay(30);
         }
     }
-    else if (material == "steel"){
-        // Move 30 degrees clockwise
-        for (pos3 = originalpos3; pos3 <= originalpos3 + 30; pos3 += 5) {
-            myservo3.write(pos3);
-            delay(30);
-        }
-        
-        servo_2();
-        delay(200);
-        // Return to original position
-        for (pos3 = originalpos3 + 30; pos3 >= originalpos3; pos3 -= 5) {
-            myservo3.write(pos3);
-            delay(30);
-        }
-    }
+
+    // else{
+    //       for (pos3 = originalpos3; pos3 <= originalpos3 + 30; pos3 += 5) {
+    //         myservo3.write(pos3);
+    //         delay(30);
+    //     }
+    //}
 }
 
 void loop() {
   servo_1();
-  int sensor1, sensor2;
-  sensor1, sensor2 = sensores(); //find sensor input
+
+
+    int state1 = digitalRead(sensor);
+    int state2 = digitalRead(sensor2);
+    Serial.println(state1);
+    Serial.println(state2);
+    if (state1 && state2){
+        servo_3("steel");
+
+        Serial.println("steel");
+    }
+    else if(state1 && !state2 || !state1 && state2){
+        servo_3("brass");
+
+        Serial.println("brass");
+
+    }
+
+
   
-  if (sensor1 && sensor2){
-      servo_3("steel");
-  }
-  else if(sensor1 && !sensor2){
-      servo_3("brass");
-  }
-  else{
-    servo_2();
-  }
 }
